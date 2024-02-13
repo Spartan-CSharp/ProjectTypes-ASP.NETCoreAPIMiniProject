@@ -1,18 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 using ClassLibrary;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace APIWebApplicationUI
 {
@@ -28,9 +20,9 @@ namespace APIWebApplicationUI
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddControllers();
-			services.AddSingleton<PersonModel>();
-			services.AddTransient<AddressModel>();
+			_ = services.AddControllers();
+			_ = services.AddSingleton<PersonModel>();
+			_ = services.AddTransient<AddressModel>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,19 +30,16 @@ namespace APIWebApplicationUI
 		{
 			if ( env.IsDevelopment() )
 			{
-				app.UseDeveloperExceptionPage();
+				_ = app.UseDeveloperExceptionPage();
 			}
 
-			app.UseHttpsRedirection();
+			_ = app.UseHttpsRedirection();
 
-			app.UseRouting();
+			_ = app.UseRouting();
 
-			app.UseAuthorization();
+			_ = app.UseAuthorization();
 
-			app.UseEndpoints(endpoints =>
-			{
-				endpoints.MapControllers();
-			});
+			_ = app.UseEndpoints(endpoints => endpoints.MapControllers());
 		}
 	}
 }
